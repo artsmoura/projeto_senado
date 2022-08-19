@@ -1,0 +1,9 @@
+.headerBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    border-radius: 10px;
+    margin          : 0.5vh 1vh 0vh 1vh;
+    background-color: rgb(87, 177, 230);
+}
