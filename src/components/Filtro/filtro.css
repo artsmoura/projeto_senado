@@ -1,0 +1,7 @@
+.filtroBox {
+    position     : relative;
+    border       : 1px solid #adb6bb;
+    width        : 700px;
+    height       :fit-content;
+    border-radius: 10px;
+}

@@ -1,0 +1,24 @@
+table {
+    max-width: 700px;
+    width: 100%;
+}
+
+thead {
+    border          : 1px solid #000000;
+    border-radius   : 10px;
+    box-shadow      : 0px 3px 6px #00000029;
+    top             : 10px;
+    width: 10px;
+    height: 40px;
+}
+th{
+    margin: 10px;
+    padding: 10px;
+}
+thead tr th:not(:first-child) {
+    border-left: 1px solid rgb(206, 206, 206);
+}
+
+#body{
+    border          : 1px solid #000000;
+}

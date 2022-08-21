@@ -1,31 +1,24 @@
-import React from 'react';
-import axios from 'axios';
+import { ATUALIZAR_COMISSOES, ATUALIZAR_SENADORES, SENADORES_CARREGADO_ERRO, SENADORES_CARREGADO_SUCESSO } from './senadoresAction';
 
-export const SENADORES_CARREGADO_SUCESSO = 'SENADORES_CARREGADO_SUCESSO';
-export const senadoresCarregadoSucesso = senadores => ({
-    type: SENADORES_CARREGADO_SUCESSO,
-    payload: senadores
-});
+const inicialState = {
+    senadores: {},
+    senadoresAtualizados: {}
+};
 
-export const SENADORES_CARREGADO_ERRO = 'SENADORES_CARREGADO_ERRO';
-export const senadoresCarregadosErro = erro => ({
-    type: SENADORES_CARREGADO_ERRO,
-    payload: erro
-});
-
-export const listarSenadores = (e) => {
-    const params = {
-        pesquisa: `&nome=${e && e.pesquisa ? e.pesquisa : ''}`
-    };
-
-    return dispatch => {
-        axios
-            .get('')
-            .then(response => {
-                dispatch(senadoresCarregadoSucesso(response.data));
-            })
-            .catch(error => {
-                dispatch(senadoresCarregadosErro(error));
-            });
-    };
+export default (state = inicialState, { type, payload }) => {
+    switch (type) {
+        case SENADORES_CARREGADO_SUCESSO:
+            return {
+                ...state,
+                senadores: payload.ListaParlamentarEmExercicio.Parlamentares.Parlamentar
+            };
+        case SENADORES_CARREGADO_ERRO:
+            return { ...state };
+        case ATUALIZAR_COMISSOES:
+            return {
+                ...state,
+            };
+        default:
+            return state;
+    }
 };

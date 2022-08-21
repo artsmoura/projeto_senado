@@ -1,21 +1,49 @@
-import { SENADORES_CARREGADO_ERRO, SENADORES_CARREGADO_SUCESSO } from './senadoresReducer';
+import axios from 'axios';
 
-const seandoresInicial = {
+export const SENADORES_CARREGADO_SUCESSO = 'SENADORES_CARREGADO_SUCESSO';
+export const senadoresCarregadoSucesso = senadores => ({
+    type: SENADORES_CARREGADO_SUCESSO,
+    payload: senadores
+});
 
+export const SENADORES_CARREGADO_ERRO = 'SENADORES_CARREGADO_ERRO';
+export const senadoresCarregadosErro = erro => ({
+    type: SENADORES_CARREGADO_ERRO,
+    payload: erro
+});
+
+export const listarSenadores = (e) => {
+    const params = {
+        pesquisa: `&nome=${e && e.pesquisa ? e.pesquisa : ''}`
+    };
+
+    return dispatch => {
+        axios
+            .get('https://legis.senado.leg.br/dadosabertos/senador/lista/atual')
+            .then(response => {
+                dispatch(senadoresCarregadoSucesso(response.data));
+            })
+            .catch(error => {
+                dispatch(senadoresCarregadosErro(error.data));
+            });
+    };
 };
 
-const inicialState = {
-    senadores: {}
-};
+export const ATUALIZAR_COMISSOES = 'ATUALIZAR_COMISSOES';
+export const atualizarComissoes = comissoes => ({
+    type: ATUALIZAR_COMISSOES,
+    payload: comissoes
+});
 
-export default (state = inicialState, { type, payload }) => {
-    switch (type) {
-        case SENADORES_CARREGADO_SUCESSO:
-            return {
-                ...state,
-                senadores: payload
-            };
-        case SENADORES_CARREGADO_ERRO:
-            return { ...state };
-    }
+export const setComissoes = (e) => {
+    return dispatch => [
+        axios
+            .get(`https://legis.senado.leg.br/dadosabertos/senador/${e}/comissoes`)
+            .then(response => {
+                dispatch(atualizarComissoes(response.data));
+            })
+            .catch(error => {
+                dispatch(senadoresCarregadosErro(error));
+            })
+    ];
 };
