@@ -1,8 +1,8 @@
-import { ATUALIZAR_COMISSOES, ATUALIZAR_SENADORES, SENADORES_CARREGADO_ERRO, SENADORES_CARREGADO_SUCESSO } from './senadoresAction';
+import { ATUALIZAR_COMISSOES, ATUALIZAR_SENADORES, SENADORES_CARREGADO_ERRO, SENADORES_CARREGADO_SUCESSO, SET_SENADOR } from './senadoresAction';
 
 const inicialState = {
     senadores: {},
-    senadoresAtualizados: {}
+    senador: {}
 };
 
 export default (state = inicialState, { type, payload }) => {
@@ -17,6 +17,15 @@ export default (state = inicialState, { type, payload }) => {
         case ATUALIZAR_COMISSOES:
             return {
                 ...state,
+                senador: {
+                    ...state.senador,
+                    comissoes: payload
+                }
+            };
+        case SET_SENADOR:
+            return {
+                ...state,
+                senador: payload
             };
         default:
             return state;

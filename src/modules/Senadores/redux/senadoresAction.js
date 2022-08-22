@@ -13,10 +13,6 @@ export const senadoresCarregadosErro = erro => ({
 });
 
 export const listarSenadores = (e) => {
-    const params = {
-        pesquisa: `&nome=${e && e.pesquisa ? e.pesquisa : ''}`
-    };
-
     return dispatch => {
         axios
             .get('https://legis.senado.leg.br/dadosabertos/senador/lista/atual')
@@ -40,10 +36,16 @@ export const setComissoes = (e) => {
         axios
             .get(`https://legis.senado.leg.br/dadosabertos/senador/${e}/comissoes`)
             .then(response => {
-                dispatch(atualizarComissoes(response.data));
+                dispatch(atualizarComissoes(response.data.MembroComissaoParlamentar.Parlamentar.MembroComissoes.Comissao));
             })
             .catch(error => {
                 dispatch(senadoresCarregadosErro(error));
             })
     ];
 };
+
+export const SET_SENADOR = 'SET_SENADOR';
+export const setSenador = senador => ({
+    type: SET_SENADOR,
+    payload: senador
+});

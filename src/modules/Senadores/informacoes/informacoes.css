@@ -1,0 +1,33 @@
+.infoBox{ 
+    max-width: 100%;
+    display: flex
+}
+
+.cropped-image {
+ width: 300px;
+ height: 280px;
+ border: 3px solid #bbb;
+}
+  
+.none-image {
+  object-fit:none;
+}
+
+.position-left-top {
+  object-position: 50% top;
+}
+
+.img {
+  width: 198px;
+  height: 200px;
+  border: 3px solid #bbb;
+  background-size: cover;
+  background-position: 30% 10%;
+  border-radius: 50%;
+}
+
+.senadorInfo {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
