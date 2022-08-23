@@ -1,7 +1,7 @@
 import React from "react";
 import '../Input/input.css';
 
-export default ({
+const Input = ({
     type = '',
     name = '',
     id = '',
@@ -31,3 +31,5 @@ export default ({
         </div>
     );
 };
+
+export default Input;

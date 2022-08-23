@@ -3,7 +3,7 @@ import '../Header/header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import Input from "../Input/input";
 
-export default () => {
+const Header = () => {
     return (
         <header className="headerBox">
             <Input
@@ -21,3 +21,5 @@ export default () => {
         </header>
     );
 };
+
+export default Header;

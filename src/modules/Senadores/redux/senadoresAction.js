@@ -49,3 +49,14 @@ export const setSenador = senador => ({
     type: SET_SENADOR,
     payload: senador
 });
+
+export const FILTRO_SENADORES = "FILTRO_SENADORES";
+export const filtroSenadores = filtro => ({
+    type: FILTRO_SENADORES,
+    payload: filtro
+});
+
+export const LIMPAR_INFO_SENADOR = "LIMPAR_INFO_SENADOR";
+export const limparInfoSenador = () => ({
+    type: LIMPAR_INFO_SENADOR
+});

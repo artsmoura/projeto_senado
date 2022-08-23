@@ -6,8 +6,10 @@ import { ChevronRight } from '@material-ui/icons';
 const Table = ({ dados, coluna, subTable }) => {
 
     const [itemSelected, setItemSelected] = useState();
+
     const handleSubTableOpen = (item, itemIndex) => {
-        if (subTable && itemIndex != itemSelected) {
+
+        if (subTable && itemIndex !== itemSelected) {
             subTable.action({ itens: item });
         }
         if (itemIndex === itemSelected) {

@@ -1,7 +1,27 @@
 .filtroBox {
     position     : relative;
     border       : 1px solid #adb6bb;
-    width        : 700px;
+    width        : 300px;
     height       :fit-content;
     border-radius: 10px;
+    padding: 0px 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items:flex-start;
+    flex-direction: column;
+}
+
+.filtroHeader {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.filtroHeader .MuiSvgIcon-root {
+    padding-top: 20px;
+}
+
+.itensCheckbox.false{
+    height: 0px;
+    visibility: hidden;
 }
