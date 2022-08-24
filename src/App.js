@@ -5,12 +5,14 @@ import Filtro from './components/Filtro/filtro';
 import Header from './components/Header/header';
 import { listarSenadores } from './modules/Senadores/redux/senadoresAction';
 import Senadores from './modules/Senadores/senadores';
+import useWindowDimensions from './util/util';
 
 function App() {
 
   const dispatch = useDispatch();
   const listaSenadores = useSelector(state => state.senadoresState.senadores);
 
+  const tamanhoTela = useWindowDimensions();
 
   useEffect(() => {
     dispatch(listarSenadores());
@@ -33,18 +35,23 @@ function App() {
   const listaEstados = estadoSenadores.filter((item, index) => estadoSenadores.indexOf(item) === index);
 
   const itemFiltro = [
-    /* { value: "Estado" }, */
     { text: "Partido", valor: listaPartidos },
     { text: "Estado", valor: listaEstados }
   ];
 
   return (
     <>
-      <Header />
+      <Header
+        tela={tamanhoTela.width}
+        item={itemFiltro}
+      />
       <div className="App">
-        <Filtro
-          item={itemFiltro}
-        />
+        {tamanhoTela.width >= 974 ?
+          <Filtro
+            item={itemFiltro}
+          />
+          : null
+        }
         <Senadores />
       </div>
     </>

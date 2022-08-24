@@ -6,7 +6,7 @@ import { filtroSenadores, limparInfoSenador } from "../../modules/Senadores/redu
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-const Filtro = ({ item }) => {
+const Filtro = ({ filtroHeader, item }) => {
 
     const dispatch = useDispatch();
     const filtro = useSelector(state => state.senadoresState.filtro);
@@ -33,7 +33,7 @@ const Filtro = ({ item }) => {
 
     const ConteudoFiltro = ({ item }) => (
         <>
-            <div className="filtroHeader" onClick={() => handleOpenFiltro(item.text)}>
+            <div className={`filtroType ${filtroOpen[item.text]}`} onClick={() => handleOpenFiltro(item.text)}>
                 <ChevronRight />
                 <h3>{item.text}</h3>
             </div>
@@ -49,7 +49,7 @@ const Filtro = ({ item }) => {
     );
 
     return (
-        <div className="filtroBox">
+        <div className={`filtroBox ${filtroHeader ? "filtroFromHeader" : ''}`}>
             <h2>Filtros</h2>
             {item.map((itemFiltro) => <ConteudoFiltro item={itemFiltro} />)}
         </div>

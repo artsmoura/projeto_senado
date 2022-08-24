@@ -1,9 +1,36 @@
-.headerBox{
+.headerBox {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 50px;
     border-radius: 10px;
-    margin          : 0.5vh 1vh 0vh 1vh;
+    margin: 0.5vh 1vh 0vh 1vh;
     background-color: rgb(87, 177, 230);
+    position: relative;
+}
+
+.headerBox .headerMobile>svg {
+    position: absolute;
+    left: 0;
+    margin-left: 10px;
+}
+
+.headerBox .headerMobile svg {
+    fill: white;
+}
+
+.filtroHeader.true {
+    position: fixed;
+    visibility: show;
+    height: 100%;
+    width: 250px;
+    z-index: 999;
+    background-color: white;
+    border: 1px solid red;
+    top: 0;
+    left: 0;
+}
+
+.filtroHeader.false {
+    visibility: hidden;
 }

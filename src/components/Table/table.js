@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./table.css";
 import { ChevronRight } from '@material-ui/icons';
+import { limparInfoSenador } from '../../modules/Senadores/redux/senadoresAction';
 
 
 const Table = ({ dados, coluna, subTable }) => {
@@ -19,11 +20,11 @@ const Table = ({ dados, coluna, subTable }) => {
         }
     };
 
-    const TableHeadItem = ({ item }) => <div className='tableColumn'>{item.cabecalho}</div>;
+    const TableHeadItem = ({ item }) => <div className="tableColumn">{item.cabecalho}</div>;
 
     const TableRow = ({ item, coluna, itemIndex, subtable }) => (
         <>
-            <div className='tableRow' onClick={() => handleSubTableOpen(item, itemIndex)}>
+            <div className={`tableRow  ${itemSelected === itemIndex && "focus"}`} onClick={() => handleSubTableOpen(item, itemIndex)}>
                 <ChevronRight />
                 {coluna.map((itemColuna) => {
                     return (
@@ -46,6 +47,7 @@ const Table = ({ dados, coluna, subTable }) => {
                     </div>
                 }
             </div>
+            {/* {console.log(subtable.content.props)} */}
         </>
     );
 

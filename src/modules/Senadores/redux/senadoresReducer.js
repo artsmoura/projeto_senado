@@ -11,7 +11,10 @@ const inicialState = {
     senadores: {},
     senador: {},
     partidos: {},
-    filtro: ''
+    filtro: {
+        tipo: '',
+        value: ''
+    }
 };
 
 export default (state = inicialState, { type, payload }) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Table from "../../components/Table/table";
@@ -22,10 +22,18 @@ const Senadores = () => {
             if (value.UfParlamentar === filtro.value) {
                 return value;
             }
-        } else {
+        } else if (filtro.tipo === 'Partido') {
             if (value.SiglaPartidoParlamentar === filtro.value) {
                 return value;
             }
+        } else if (filtro.tipo === 'pesquisaGeral') {
+            let pesquisaMinusculo = filtro.value.toLowerCase();
+            let nomeMinsculo = value.NomeParlamentar.toLowerCase();
+            if (filtro.value !== '' && nomeMinsculo.includes(pesquisaMinusculo)) {
+                return value;
+            }
+        } else {
+            return;
         }
     }
 
@@ -49,7 +57,7 @@ const Senadores = () => {
     return (
         <>
             <Table
-                dados={filtro === '' ? senadoresObject : senadoresFiltrados}
+                dados={filtro.value === '' ? senadoresObject : senadoresFiltrados}
                 coluna={coluna}
                 subTable={{
                     content: <Informacoes info={senador} />,
