@@ -1,36 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./table.css";
 import { ChevronRight } from '@material-ui/icons';
-import { limparInfoSenador } from '../../modules/Senadores/redux/senadoresAction';
+import { setComissoes, setSenador } from '../../modules/Senadores/redux/senadoresAction';
+import { useDispatch } from 'react-redux';
+import InformacoesSenadores from '../../modules/Senadores/informacoes/informacoes';
 
 
 const Table = ({ dados, coluna, subTable }) => {
 
-    const [itemSelected, setItemSelected] = useState();
+    const dispatch = useDispatch();
 
-    const handleSubTableOpen = (item, itemIndex) => {
-
-        if (subTable && itemIndex !== itemSelected) {
-            subTable.action({ itens: item });
-        }
-        if (itemIndex === itemSelected) {
-            setItemSelected(null);
-        } else {
-            setItemSelected(itemIndex);
-        }
+    const handleSubTableOpen = (item) => {
+        dispatch(setSenador(item));
+        dispatch(setComissoes(item));
     };
 
     const TableHeadItem = ({ item }) => <div className="tableColumn">{item.cabecalho}</div>;
 
-    const TableRow = ({ item, coluna, itemIndex, subtable }) => (
+    const TableRow = ({ item, coluna, itemIndex }) => (
         <>
-            <div className={`tableRow  ${itemSelected === itemIndex && "focus"}`} onClick={() => handleSubTableOpen(item, itemIndex)}>
+            <div className={`tableRow  ${item.isOpen ? "focus" : ''}`} onClick={() => handleSubTableOpen(item, itemIndex)}>
                 <ChevronRight />
                 {coluna.map((itemColuna) => {
                     return (
-
                         <div className='tableColumn'>
-                            {item[`${itemColuna.value}`]}
+                            {item.IdentificacaoParlamentar[`${itemColuna.value}`]}
                             <span className='tableDivisor'></span>
                         </div>
 
@@ -38,16 +32,9 @@ const Table = ({ dados, coluna, subTable }) => {
                 })}
             </div>
             <div className='subtable'>
-                {subtable && itemIndex === itemSelected ?
-                    <div className="subtable-body opened">
-                        {subTable && subtable.content}
-                    </div> :
-                    <div className="subtable-body closed">
-                        {subTable && subTable.content}
-                    </div>
-                }
+                <InformacoesSenadores senador={item} />
             </div>
-            {/* {console.log(subtable.content.props)} */}
+
         </>
     );
 

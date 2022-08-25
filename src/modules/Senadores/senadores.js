@@ -7,28 +7,24 @@ import { setComissoes, setSenador } from "./redux/senadoresAction";
 
 const Senadores = () => {
     const dispatch = useDispatch();
-    const listaSenadores = useSelector(state => state.senadoresState.senadores);
-    const senador = useSelector(state => state.senadoresState.senador);
+    const listaSenadores = useSelector(state => state.senadoresState.senadores) ?? [];
     const filtro = useSelector(state => state.senadoresState.filtro);
 
-    const senadoresObject = [];
-    Object.entries(listaSenadores).map((dados) => {
-        const senadores = dados[1].IdentificacaoParlamentar;
-        senadoresObject.push(senadores);
-    });
+    /* console.log(listaSenadores); */
 
     function retornaFiltro(value) {
+        let itemParaFiltro = value.IdentificacaoParlamentar;
         if (filtro.tipo === 'Estado') {
-            if (value.UfParlamentar === filtro.value) {
+            if (itemParaFiltro.UfParlamentar === filtro.value) {
                 return value;
             }
         } else if (filtro.tipo === 'Partido') {
-            if (value.SiglaPartidoParlamentar === filtro.value) {
+            if (itemParaFiltro.SiglaPartidoParlamentar === filtro.value) {
                 return value;
             }
         } else if (filtro.tipo === 'pesquisaGeral') {
             let pesquisaMinusculo = filtro.value.toLowerCase();
-            let nomeMinsculo = value.NomeParlamentar.toLowerCase();
+            let nomeMinsculo = itemParaFiltro.NomeParlamentar.toLowerCase();
             if (filtro.value !== '' && nomeMinsculo.includes(pesquisaMinusculo)) {
                 return value;
             }
@@ -38,7 +34,7 @@ const Senadores = () => {
     }
 
     const senadoresFiltrados = [];
-    var senadorPorTipo = senadoresObject.filter(retornaFiltro);
+    var senadorPorTipo = listaSenadores.filter(retornaFiltro);
     senadorPorTipo.forEach(senadorEstado => {
         senadoresFiltrados.push(senadorEstado);
     });
@@ -49,20 +45,21 @@ const Senadores = () => {
         { cabecalho: "Partido", value: "SiglaPartidoParlamentar" }
     ];
 
-    const handleSenadores = (val) => {
-        dispatch(setSenador(val.itens));
-        dispatch(setComissoes(val.itens.CodigoParlamentar));
-    };
+    /* const handleSenadores = (val) => {
+        if (val === undefined) { return; }
+        dispatch(setSenador(val.item));
+        dispatch(setComissoes(val.item.CodigoParlamentar));
+    }; */
 
     return (
         <>
             <Table
-                dados={filtro.value === '' ? senadoresObject : senadoresFiltrados}
+                dados={filtro.value === '' ? listaSenadores : senadoresFiltrados}
                 coluna={coluna}
-                subTable={{
-                    content: <Informacoes info={senador} />,
-                    action: (val) => handleSenadores(val)
-                }}
+            /* subTable={{
+                content: <Informacoes senador={senador} />,
+                action: (val) => handleSenadores(val)
+            }} */
             />
         </>
     );

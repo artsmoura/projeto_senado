@@ -20,7 +20,10 @@ export const listarSenadores = (e) => {
                 dispatch(senadoresCarregadoSucesso(response.data));
             })
             .catch(error => {
-                dispatch(senadoresCarregadosErro(error.data));
+                dispatch(senadoresCarregadosErro({
+                    type: SENADORES_CARREGADO_ERRO,
+                    payload: error.message
+                }));
             });
     };
 };
@@ -32,14 +35,18 @@ export const atualizarComissoes = comissoes => ({
 });
 
 export const setComissoes = (e) => {
+    const codigoSenador = e.IdentificacaoParlamentar.CodigoParlamentar;
     return dispatch => [
         axios
-            .get(`https://legis.senado.leg.br/dadosabertos/senador/${e}/comissoes`)
+            .get(`https://legis.senado.leg.br/dadosabertos/senador/${codigoSenador}/comissoes`)
             .then(response => {
-                dispatch(atualizarComissoes(response.data.MembroComissaoParlamentar.Parlamentar.MembroComissoes.Comissao));
+                dispatch(atualizarComissoes(response.data));
             })
             .catch(error => {
-                dispatch(senadoresCarregadosErro(error));
+                dispatch(senadoresCarregadosErro({
+                    type: SENADORES_CARREGADO_ERRO,
+                    payload: error.message
+                }));
             })
     ];
 };
@@ -56,7 +63,12 @@ export const filtroSenadores = filtro => ({
     payload: filtro
 });
 
-export const LIMPAR_INFO_SENADOR = "LIMPAR_INFO_SENADOR";
-export const limparInfoSenador = () => ({
-    type: LIMPAR_INFO_SENADOR
+export const LIMPAR_FILTRO = "LIMPAR_FILTRO";
+export const limparFiltro = () => ({
+    type: LIMPAR_FILTRO
+});
+
+export const FECHAR_SENADORES = "FECHAR_SENADORES";
+export const fecharSenadores = () => ({
+    type: FECHAR_SENADORES
 });

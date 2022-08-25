@@ -30,6 +30,7 @@
 .table .tableBody .tableRow {
     flex: 1;
     display: flex;
+    border-radius: 10px;
 }
 
 .table .tableBody .tableRow {
@@ -58,10 +59,6 @@
     margin-left: 20px;
 }
 
-.table .tableBody .tableRow .tableColumn {
-    margin: 0 0px;
-}
-
 .subtable-body {
     transition: max-height 0.2s linear;
 }
@@ -70,6 +67,7 @@
     height: 400px;
     max-height: 400px;
     overflow-x: hidden;
+    margin-bottom: 10px;
 }
 
 .subtable-body.closed {
@@ -77,10 +75,19 @@
     overflow: hidden;
 }
 
-.tableBody .tableContent .subtable {
+.tableBody .tableContent .subtable:not(:last-child) {
     padding: 0px 25px;
     background-color: #f0f0f0;
     border-bottom: 1px solid #adb6bb60;
+}
+
+.tableBody .tableContent .subtable:last-child {
+    background-color: #f0f0f0;
+    padding: 0px 25px;
+}
+
+.subtable-body {
+    background-color: #f0f0f0;
 }
 
 .tableBody .tableRow.focus {
@@ -89,4 +96,11 @@
 
 .tableBody .tableRow.focus>svg {
     transform: rotate(90deg);
+}
+
+@media (max-width: 820px) {
+    .subtable-body.opened {
+        display: flex;
+        flex-direction: column;
+    }
 }

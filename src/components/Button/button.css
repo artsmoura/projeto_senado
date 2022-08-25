@@ -1,5 +1,4 @@
 .btn {
-    background-color: transparent;
     border: 1px solid transparent;
     border-radius: 10px;
     color: var(--color-page);
@@ -17,4 +16,27 @@
     background-color: transparent;
     border: transparent;
     border-radius: 50%;
+}
+
+.btnIconeTexto {
+    border: 1px solid #adb6bb;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
+
+.btnIconeTexto:hover {
+    background-color: #c5c5c5;
+}
+
+.btnIconeTexto svg {
+    font-size: 20px;
+}
+
+.btnIconeTexto .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    width: 100px;
+    height: 30px;
 }

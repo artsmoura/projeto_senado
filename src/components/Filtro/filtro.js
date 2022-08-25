@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import './filtro.css';
-import { ChevronRight } from '@material-ui/icons';
+import { ChevronRight, Clear } from '@material-ui/icons';
 import RadioButton from "../RadioButton/radioButton";
-import { filtroSenadores, limparInfoSenador } from "../../modules/Senadores/redux/senadoresAction";
+import { fecharSenadores, filtroSenadores, limparFiltro } from "../../modules/Senadores/redux/senadoresAction";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import Button from "../Button/button";
 
 const Filtro = ({ filtroHeader, item }) => {
 
@@ -28,7 +29,7 @@ const Filtro = ({ filtroHeader, item }) => {
             value: e.target.value
         };
         dispatch(filtroSenadores(itemFiltro));
-        dispatch(limparInfoSenador());
+        dispatch(fecharSenadores());
     };
 
     const ConteudoFiltro = ({ item }) => (
@@ -52,6 +53,24 @@ const Filtro = ({ filtroHeader, item }) => {
         <div className={`filtroBox ${filtroHeader ? "filtroFromHeader" : ''}`}>
             <h2>Filtros</h2>
             {item.map((itemFiltro) => <ConteudoFiltro item={itemFiltro} />)}
+            {
+                JSON.stringify(filtroOpen).includes("true") ?
+                    <Button
+                        id="btnLimparFiltro"
+                        titulo={"btnLimparFiltro"}
+                        type="btnIconeTexto"
+                        action={() => [
+                            dispatch(limparFiltro()),
+                            setFiltroOpen({
+                                Partido: false,
+                                Estado: false
+                            }
+                            )
+                        ]}
+                        texto={"Limpar"}
+                        children={<Clear />}
+                    /> : null
+            }
         </div>
     );
 };

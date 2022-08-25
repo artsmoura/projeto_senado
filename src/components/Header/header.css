@@ -9,13 +9,14 @@
     position: relative;
 }
 
-.headerBox .headerMobile>svg {
+.headerBox .headerMobile #btnFiltro {
     position: absolute;
     left: 0;
-    margin-left: 10px;
+    margin: 10px 0 0 10px;
+    top: 0;
 }
 
-.headerBox .headerMobile svg {
+.headerBox .headerMobile #btnFiltro svg {
     fill: white;
 }
 
@@ -26,11 +27,12 @@
     width: 250px;
     z-index: 999;
     background-color: white;
-    border: 1px solid red;
     top: 0;
     left: 0;
 }
 
 .filtroHeader.false {
     visibility: hidden;
+    height: 0;
+    width: 0;
 }

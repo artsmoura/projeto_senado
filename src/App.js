@@ -1,17 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Filtro from './components/Filtro/filtro';
 import Header from './components/Header/header';
 import { listarSenadores } from './modules/Senadores/redux/senadoresAction';
 import Senadores from './modules/Senadores/senadores';
-import useWindowDimensions from './util/util';
+import { useWindowDimensions } from './util/util';
 
 function App() {
 
   const dispatch = useDispatch();
   const listaSenadores = useSelector(state => state.senadoresState.senadores);
-
+  const ref = useRef();
   const tamanhoTela = useWindowDimensions();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
         tela={tamanhoTela.width}
         item={itemFiltro}
       />
-      <div className="App">
+      <div className="App" ref={ref}>
         {tamanhoTela.width >= 974 ?
           <Filtro
             item={itemFiltro}

@@ -1,5 +1,32 @@
 .App {
-    display       : flex;
+    display: flex;
     flex-direction: row;
-    margin        : 0.5vh 1vh 0vh 1vh;
+    margin: 0.5vh 1vh 0vh 1vh;
+}
+
+/*Para utilização no FireFox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.subtable-body.opened::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border-radius: 20px;
+    border: 2px solid #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #c5c5c5;
+    border-radius: 20px;
+    border: 2px solid white;
 }
