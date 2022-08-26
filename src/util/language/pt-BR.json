@@ -1,5 +1,5 @@
 {
-    "menu": "",
+    "filtro": "Filtro",
     "header": {
         "nome": "Nome",
         "estado": "Estado",
@@ -11,5 +11,6 @@
         "qntComissoes": "Quantidade de Comissões",
         "email": "Email Parlamentar",
         "site": "Site(s) Parlamentar"
-    }
+    },
+    "pesquisarNome": "Pesquisar Nome"
 }

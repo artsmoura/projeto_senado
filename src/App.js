@@ -7,6 +7,7 @@ import { listarSenadores } from './modules/Senadores/redux/senadoresAction';
 import Senadores from './modules/Senadores/senadores';
 import { useWindowDimensions } from './util/util';
 
+
 function App() {
 
   const dispatch = useDispatch();
@@ -37,8 +38,8 @@ function App() {
   const listaEstados = estadoSenadores.filter((item, index) => estadoSenadores.indexOf(item) === index);
 
   const itemFiltro = [
-    { text: defaultText.header.partido, valor: listaPartidos },
-    { text: defaultText.header.estado, valor: listaEstados }
+    { tipo: "partido", text: defaultText.header.partido, valor: listaPartidos },
+    { tipo: "estado", text: defaultText.header.estado, valor: listaEstados }
   ];
 
   return (
@@ -57,7 +58,6 @@ function App() {
         <Senadores />
       </div>
     </>
-
   );
 }
 

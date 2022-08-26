@@ -9,16 +9,17 @@ import Filtro from "../Filtro/filtro";
 import { FilterList } from '@material-ui/icons';
 import Button from "../Button/button";
 import { useOutsideClick } from "../../util/util";
-import CheckboxSwtich from "../CheckboxSwitch/CheckboxSwtich";
 import SelectBox from "../Selectbox/selectbox";;
 
 const Header = ({ tela, item }) => {
 
     const dispatch = useDispatch();
     const filtro = useSelector(state => state.senadoresState.filtro);
-    const idioma = useSelector(state => state.senadoresState.idiomaList);
+    const idiomaList = useSelector(state => state.senadoresState.idiomaList);
     const ref = useRef();
     const idiomaStored = JSON.parse(localStorage.getItem('idioma'));
+    const idiomaSelected = useSelector(state => state.senadoresState.idioma.key);
+    const defaultText = require(`../../util/language/${idiomaSelected ? idiomaSelected : 'pt-BR'}.json`);
 
     const [selected, setSelected] = useState(idiomaStored);
 
@@ -81,7 +82,7 @@ const Header = ({ tela, item }) => {
             <Input
                 id={'pesquisar'}
                 name={'pesquisaGeral'}
-                placeholder={'Pesquisar Nome'}
+                placeholder={defaultText.pesquisarNome}
                 value={filtro.tipo === 'pesquisaGeral' ? filtro.value : ''}
                 changeInput={(e) => setFiltro(e)}
                 leftButton={{
@@ -90,19 +91,11 @@ const Header = ({ tela, item }) => {
                 }}
             />
 
-            {/* <CheckboxSwtich
-                id={`switchLingua`}
-                name='switchLingua'
-                checked={idioma.ptBr}
-                label={idioma.ptBr ? "PT-BR" : "EN-US"}
-                changeInput={(e) => (dispatch(atualizarIdioma(e)))}
-            /> */}
-
             <SelectBox
                 selected={selected.nome}
                 handleSelect={handleSelect}
                 options={{
-                    optiom: idioma
+                    optiom: idiomaList
                 }}
             />
         </header>

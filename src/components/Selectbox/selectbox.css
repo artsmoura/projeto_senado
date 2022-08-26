@@ -9,6 +9,7 @@
     display: flex;
     align-items: flex;
     justify-content: space-between;
+    color: #fcfcfc;
 }
 
 .selectBox .selectBtn.true svg {

@@ -15,8 +15,8 @@ const Filtro = ({ filtroHeader, item }) => {
     const defaultText = require(`../../util/language/${idioma ? idioma : 'pt-BR'}.json`);
 
     const [filtroOpen, setFiltroOpen] = useState({
-        [defaultText.partido]: false,
-        [defaultText.estado]: false
+        partido: false,
+        estado: false
     });
     const handleOpenFiltro = (e) => {
         setFiltroOpen({
@@ -36,11 +36,11 @@ const Filtro = ({ filtroHeader, item }) => {
 
     const ConteudoFiltro = ({ item }) => (
         <>
-            <div className={`filtroType ${filtroOpen[item.text]}`} onClick={() => handleOpenFiltro(item.text)}>
+            <div className={`filtroType ${filtroOpen[item.tipo]}`} onClick={() => handleOpenFiltro(item.tipo)}>
                 <ChevronRight />
                 <h3>{item.text}</h3>
             </div>
-            <div className={`itensCheckbox ${filtroOpen[item.text]}`}>
+            <div className={`itensCheckbox ${filtroOpen[item.tipo]}`}>
                 <RadioButton
                     name={`radio${item.text}`}
                     changeInput={e => setFiltro(e)}
@@ -51,9 +51,10 @@ const Filtro = ({ filtroHeader, item }) => {
         </>
     );
 
+
     return (
         <div className={`filtroBox ${filtroHeader ? "filtroFromHeader" : ''}`}>
-            <h2>Filtros</h2>
+            <h2>{defaultText.filtro}</h2>
             {item.map((itemFiltro) => <ConteudoFiltro item={itemFiltro} />)}
             {
                 JSON.stringify(filtroOpen).includes("true") ?

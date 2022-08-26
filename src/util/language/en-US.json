@@ -1,5 +1,5 @@
 {
-    "menu": "",
+    "filtro": "Filter",
     "header": {
         "nome": "Name",
         "estado": "State",
@@ -11,5 +11,6 @@
         "qntComissoes": "Amount of Commissions",
         "email": "Parliamentary Email",
         "site": "Parliamentary Websites"
-    }
+    },
+    "pesquisarNome": "Search Name"
 }

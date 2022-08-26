@@ -10,11 +10,9 @@ import {
     SET_SENADOR,
 } from './senadoresAction';
 
-const temaClaro = { key: "ligth-theme", nome: "Tema Claro" };
-const temaEscuro = { key: "dark-theme", nome: "Tema Escuro" };
-const portuguese = { key: "pt-BR", nome: "Português" };
+const portugues = { key: "pt-BR", nome: "Português" };
 const english = { key: "en-US", nome: "English" };
-localStorage.setItem("idioma", JSON.stringify(portuguese));
+localStorage.setItem("idioma", JSON.stringify(portugues));
 
 const inicialState = {
     senadores: [],
@@ -25,8 +23,7 @@ const inicialState = {
         value: ''
     },
     error: {},
-    tema: [temaClaro, temaEscuro],
-    idiomaList: [portuguese, english],
+    idiomaList: [portugues, english],
     idioma: []
 };
 
