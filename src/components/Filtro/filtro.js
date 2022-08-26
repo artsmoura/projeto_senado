@@ -11,10 +11,12 @@ const Filtro = ({ filtroHeader, item }) => {
 
     const dispatch = useDispatch();
     const filtro = useSelector(state => state.senadoresState.filtro);
+    const idioma = useSelector(state => state.senadoresState.idioma.key);
+    const defaultText = require(`../../util/language/${idioma ? idioma : 'pt-BR'}.json`);
 
     const [filtroOpen, setFiltroOpen] = useState({
-        Partido: false,
-        Estado: false
+        [defaultText.partido]: false,
+        [defaultText.estado]: false
     });
     const handleOpenFiltro = (e) => {
         setFiltroOpen({

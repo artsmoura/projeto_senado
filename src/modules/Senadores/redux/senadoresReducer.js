@@ -1,5 +1,6 @@
 import {
     ATUALIZAR_COMISSOES,
+    ATUALIZAR_IDIOMA,
     FECHAR_SENADORES,
     FILTRO_SENADORES,
     LIMPAR_FILTRO,
@@ -9,6 +10,12 @@ import {
     SET_SENADOR,
 } from './senadoresAction';
 
+const temaClaro = { key: "ligth-theme", nome: "Tema Claro" };
+const temaEscuro = { key: "dark-theme", nome: "Tema Escuro" };
+const portuguese = { key: "pt-BR", nome: "Português" };
+const english = { key: "en-US", nome: "English" };
+localStorage.setItem("idioma", JSON.stringify(portuguese));
+
 const inicialState = {
     senadores: [],
     senador: {},
@@ -17,7 +24,10 @@ const inicialState = {
         tipo: '',
         value: ''
     },
-    error: {}
+    error: {},
+    tema: [temaClaro, temaEscuro],
+    idiomaList: [portuguese, english],
+    idioma: []
 };
 
 export default (state = inicialState, action) => {
@@ -83,6 +93,11 @@ export default (state = inicialState, action) => {
             return {
                 ...state,
                 filtro: inicialState.filtro
+            };
+        case ATUALIZAR_IDIOMA:
+            return {
+                ...state,
+                idioma: action.payload
             };
         default:
             return state;

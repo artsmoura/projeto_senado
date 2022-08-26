@@ -1,20 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../Header/header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import Input from "../Input/input";
-import { filtroSenadores } from "../../modules/Senadores/redux/senadoresAction";
+import { atualizarIdioma, filtroSenadores } from "../../modules/Senadores/redux/senadoresAction";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Filtro from "../Filtro/filtro";
 import { FilterList } from '@material-ui/icons';
 import Button from "../Button/button";
 import { useOutsideClick } from "../../util/util";
+import CheckboxSwtich from "../CheckboxSwitch/CheckboxSwtich";
+import SelectBox from "../Selectbox/selectbox";;
 
 const Header = ({ tela, item }) => {
 
     const dispatch = useDispatch();
     const filtro = useSelector(state => state.senadoresState.filtro);
+    const idioma = useSelector(state => state.senadoresState.idiomaList);
     const ref = useRef();
+    const idiomaStored = JSON.parse(localStorage.getItem('idioma'));
+
+    const [selected, setSelected] = useState(idiomaStored);
 
     const [filtroOpen, setFiltroOpen] = useState(false);
     const handleFilterOpen = () => {
@@ -28,6 +34,25 @@ const Header = ({ tela, item }) => {
         };
         dispatch(filtroSenadores(itemFiltro));
     };
+
+    const handleSelect = (e) => {
+        setSelected({
+            ...selected,
+            key: e.key,
+            nome: e.nome
+        });
+        dispatch(atualizarIdioma({
+            ...selected,
+            key: e.key,
+            nome: e.nome
+        }));
+    };
+
+
+
+    useEffect(() => {
+        localStorage.setItem("idioma", JSON.stringify(selected));
+    });
 
     useOutsideClick(ref, () => setFiltroOpen(false));
 
@@ -62,6 +87,22 @@ const Header = ({ tela, item }) => {
                 leftButton={{
                     text: 'Pesquisar',
                     icon: <SearchIcon />
+                }}
+            />
+
+            {/* <CheckboxSwtich
+                id={`switchLingua`}
+                name='switchLingua'
+                checked={idioma.ptBr}
+                label={idioma.ptBr ? "PT-BR" : "EN-US"}
+                changeInput={(e) => (dispatch(atualizarIdioma(e)))}
+            /> */}
+
+            <SelectBox
+                selected={selected.nome}
+                handleSelect={handleSelect}
+                options={{
+                    optiom: idioma
                 }}
             />
         </header>

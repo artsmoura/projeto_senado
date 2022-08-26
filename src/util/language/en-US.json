@@ -1,0 +1,15 @@
+{
+    "menu": "",
+    "header": {
+        "nome": "Name",
+        "estado": "State",
+        "partido": "Parties"
+    },
+    "itensTabela": {
+        "nomeCompleto": "Full Name",
+        "telefone": "Phone",
+        "qntComissoes": "Amount of Commissions",
+        "email": "Parliamentary Email",
+        "site": "Parliamentary Websites"
+    }
+}

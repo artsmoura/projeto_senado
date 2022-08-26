@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Table from "../../components/Table/table";
-import Informacoes from "./informacoes/informacoes";
-import { setComissoes, setSenador } from "./redux/senadoresAction";
 
 const Senadores = () => {
     const dispatch = useDispatch();
     const listaSenadores = useSelector(state => state.senadoresState.senadores) ?? [];
     const filtro = useSelector(state => state.senadoresState.filtro);
 
-    /* console.log(listaSenadores); */
+    const idioma = useSelector(state => state.senadoresState.idioma.key);
+    const defaultText = require(`../../util/language/${idioma ? idioma : 'pt-BR'}.json`);
 
     function retornaFiltro(value) {
         let itemParaFiltro = value.IdentificacaoParlamentar;
@@ -40,26 +39,16 @@ const Senadores = () => {
     });
 
     const coluna = [
-        { cabecalho: "Nome", value: "NomeParlamentar" },
-        { cabecalho: "Estado", value: "UfParlamentar" },
-        { cabecalho: "Partido", value: "SiglaPartidoParlamentar" }
+        { cabecalho: defaultText.header.nome, value: "NomeParlamentar" },
+        { cabecalho: defaultText.header.estado, value: "UfParlamentar" },
+        { cabecalho: defaultText.header.partido, value: "SiglaPartidoParlamentar" }
     ];
-
-    /* const handleSenadores = (val) => {
-        if (val === undefined) { return; }
-        dispatch(setSenador(val.item));
-        dispatch(setComissoes(val.item.CodigoParlamentar));
-    }; */
 
     return (
         <>
             <Table
                 dados={filtro.value === '' ? listaSenadores : senadoresFiltrados}
                 coluna={coluna}
-            /* subTable={{
-                content: <Informacoes senador={senador} />,
-                action: (val) => handleSenadores(val)
-            }} */
             />
         </>
     );

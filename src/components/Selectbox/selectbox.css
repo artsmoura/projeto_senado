@@ -1,0 +1,41 @@
+.selectBox {
+    width: 150px;
+    height: fit-content;
+    text-transform: capitalize;
+}
+
+.selectBox .selectBtn {
+    padding: 10px;
+    display: flex;
+    align-items: flex;
+    justify-content: space-between;
+}
+
+.selectBox .selectBtn.true svg {
+    transform: rotate(-90deg);
+}
+
+.selectBox .selectConteudo {
+    position: absolute;
+    top: 100%;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    right: 0;
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.selectBox .selectConteudo .selectItem {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.selectBox .selectConteudo .selectItem:hover {
+    background-color: #fcfcfc;
+}

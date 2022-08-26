@@ -3,7 +3,7 @@ import './radioButton.css';
 
 const RadioButton = ({ name, text, options, selected, changeInput, validate }) => {
     return (
-        <div className={`custom-control-radio ${validate && validate.erro && "show-error-hint"}`}>
+        <div className={`custom-control-radio`}>
             <label>{text}</label>
             {options.map(option => (
                 <div key={option} className='radio-inline'>

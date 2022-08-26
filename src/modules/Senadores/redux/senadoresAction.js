@@ -72,3 +72,9 @@ export const FECHAR_SENADORES = "FECHAR_SENADORES";
 export const fecharSenadores = () => ({
     type: FECHAR_SENADORES
 });
+
+export const ATUALIZAR_IDIOMA = "ATUALIZAR_IDIOMA";
+export const atualizarIdioma = (e) => ({
+    type: ATUALIZAR_IDIOMA,
+    payload: e
+});

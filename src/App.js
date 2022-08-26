@@ -13,6 +13,8 @@ function App() {
   const listaSenadores = useSelector(state => state.senadoresState.senadores);
   const ref = useRef();
   const tamanhoTela = useWindowDimensions();
+  const idioma = useSelector(state => state.senadoresState.idioma.key);
+  const defaultText = require(`./util/language/${idioma ? idioma : 'pt-BR'}.json`);
 
   useEffect(() => {
     dispatch(listarSenadores());
@@ -35,8 +37,8 @@ function App() {
   const listaEstados = estadoSenadores.filter((item, index) => estadoSenadores.indexOf(item) === index);
 
   const itemFiltro = [
-    { text: "Partido", valor: listaPartidos },
-    { text: "Estado", valor: listaEstados }
+    { text: defaultText.header.partido, valor: listaPartidos },
+    { text: defaultText.header.estado, valor: listaEstados }
   ];
 
   return (

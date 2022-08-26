@@ -1,0 +1,15 @@
+{
+    "menu": "",
+    "header": {
+        "nome": "Nome",
+        "estado": "Estado",
+        "partido": "Partido"
+    },
+    "itensTabela": {
+        "nomeCompleto": "Nome Completo",
+        "telefone": "Telefone",
+        "qntComissoes": "Quantidade de Comissões",
+        "email": "Email Parlamentar",
+        "site": "Site(s) Parlamentar"
+    }
+}

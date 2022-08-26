@@ -1,0 +1,59 @@
+.custom-control-checkbox-switch {
+    position: relative;
+    min-height: 10px;
+
+    margin: 10px 0;
+}
+
+.custom-control-checkbox-switch .custom-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-control-checkbox-switch .custom-label {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    display: inline-flex;
+    align-items: center;
+}
+
+.custom-control-checkbox-switch .custom-label::before {
+    content: '';
+    width: 45px;
+    height: 20px;
+    border: 2px solid #a6a6a7;
+    margin-right: 10px;
+    margin-top: 0px;
+    border-radius: 20px;
+    display: inline-flex;
+    transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.custom-control-checkbox-switch .custom-label::after {
+    background-color: #6c757d;
+    border-radius: 20px;
+    content: '';
+    height: 17px;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 17px;
+    transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, margin 0.15s ease-in-out;
+}
+
+.custom-control-checkbox-switch input:checked+.custom-label::before {
+    background-color: #36c456;
+    border-color: #36c456;
+}
+
+.custom-control-checkbox-switch input:checked+.custom-label::after {
+    background-color: #fff;
+    margin-left: 22px;
+}
+
+.custom-control-checkbox-switch input:disabled+.custom-label {
+    opacity: 0.65;
+}
